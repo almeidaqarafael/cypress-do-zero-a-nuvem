@@ -4,9 +4,9 @@
   "description": "Curso 'Cypress, do Zero à Nuvem' da Escola Talking About Testing.",
   "main": "src/index.html",
   "scripts": {
-  "cy:open": "set CYPRESS_NO_GPU=1 && cypress open",
-  "test": "cypress run"
-},
+    "cy:open": "set CYPRESS_NO_GPU=1 && cypress open",
+    "test": "cypress run"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wlsf82/cypress-do-zero-a-nuvem.git"
@@ -24,6 +24,7 @@
   "license": "MIT",
   "homepage": "https://github.com/wlsf82/cypress-do-zero-a-nuvem#readme",
   "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
     "cypress": "^13.12.0"
   }
 }
