@@ -9,12 +9,12 @@ beforeEach('', () => {
 
 describe('Central de Atendimento ao Cliente TAT', () => {
 
-    const usuarioRandomico = {
-        nome: faker.person.firstName(),
-        sobrenome: faker.person.lastName(),
-        email: faker.internet.email(),
-        texto: faker.lorem.paragraph()
-    }
+  const usuarioRandomico = {
+    nome: faker.person.firstName(),
+    sobrenome: faker.person.lastName(),
+    email: faker.internet.email(),
+    texto: faker.lorem.paragraph()
+  }
 
   it('verifica o título da aplicação', () => {
 
@@ -127,10 +127,29 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('input[type="radio"]')
       .should('have.length', 3)
       .each(tipoDeAtendimento => {
-        cy.wrap(tipoDeAtendimento).check()  
+        cy.wrap(tipoDeAtendimento).check()
           .should('be.checked')
       })
   });
 
+  it('marca ambos checkboxes, depois desmarca o último', () => {
+    cy.get('input[type="checkbox"]').check()
+      .should('be.checked')
+      .last()
+      .uncheck()
+      .should('not.be.checked')
+
+  });
+
+  it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
+    cy.get('#phone-checkbox').check()
+      .should('be.checked')
+    cy.EnviaFormularioComSucesso(usuarioRandomico)
+
+    cy.get('.phone-label-span')
+      .should('be.visible')
+      .and('contain', '(obrigatório)')
+
+  });
 
 })
